@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<config>
+	<global>
+		<chrono>true</chrono>
+	</global>
+	<path>
+		<system>env/system.xml</system>
+		<trace>env/trace.raw</trace>
+		<output>env/newtrace.raw</output>
+	</path>
+	<score defbounds="false">
+		<latency min="1" max="15"/>
+		<nbjumps min="1" max="3"/>
+		<rate>.6</rate>
+	</score>
+	<distribution>
+		<datafactor>4096</datafactor>
+		<address max="16G">sequential</address>
+		<size value="4">constant</size>
+	</distribution>
+</config>
