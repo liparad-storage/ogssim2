@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<device field="diry" mandatory="y">
+    <type field="cbox" parameter="y" mandatory="y" desc="device type" values="ssd" />
+        <information field="diry">
+                <name field="text"/>
+                <capacity field="text"/>
+                <arch field="cbox" values="SLC;MLC;TLC" />
+                <producer field="text"/>
+                <year field="text"/>
+        </information>
+        <geometry field="diry" mandatory="y">
+            <pagesize field="text" mandatory="y" desc="Page size" />
+            <pagesperblock field="text" mandatory="y" desc="Number of pages per block" />
+            <blocksperdie field="text" mandatory="y" desc="Number of blocks per die" />
+            <nbdies field="text" mandatory="y" desc="Number of dies" />
+        </geometry>
+        <performance field="diry" mandatory="y">
+            <randread field="text" mandatory="y" desc="Random read metrics">
+                <unit field="cbox" mandatory="y" parameter="y" values="iops" />
+                <size field="text" mandatory="y" parameter="y" format="123[KMG]" />
+            </randread>
+            <randwrite field="text" mandatory="y" desc="Random write metrics">
+                <unit field="cbox" mandatory="y" parameter="y" values="iops" />
+                <size field="text" mandatory="y" parameter="y" format="123[KMG]" />
+            </randwrite>
+            <seqread field="text" mandatory="y" desc="Sequential read metrics">
+                <unit field="cbox" mandatory="y" parameter="y" values="bandwidth" format="123[KMG]" />
+            </seqread>
+            <seqwrite field="text" mandatory="y" desc="Sequential write metrics">
+                <unit field="cbox" mandatory="y" parameter="y" values="bandwidth" format="123[KMG]" />
+            </seqwrite>
+            <erase field="text" mandatory="y" desc="Erase time">
+                <unit field="cbox" mandatory="y" parameter="y" values="time" />
+            </erase>
+            <buffersize field="text" mandatory="y" desc="Buffer size" format="123[KMG]" />
+        </performance>
+        <reliability field="diry" mandatory="y">
+            <nberase field="text" />
+        </reliability>
+        <controller field="diry" mandatory="y" />
+</device>

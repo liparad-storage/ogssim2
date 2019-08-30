@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<device field="diry" mandatory="y">
+    <type field="cbox" parameter="y" mandatory="y" desc="device type" values="nvram" />
+	<information field="diry">
+		<name field="text"/>
+		<capacity field="text"/>
+		<producer field="text"/>
+		<year field="text"/>
+	</information>
+	<geometry field="diry" mandatory="y">
+		<nbchips field="text" mandatory="y" desc="Count of parallel chip in device"/>
+		<bytespercol field="text" mandatory="y" desc="Count of bytes per column in a chip"/>
+		<columns field="text" mandatory="y" desc="Count of columns per row in a chip"/>
+		<rows field="text" mandatory="y" desc="Count of row per chip"/>
+	</geometry>
+	<performance field="diry" mandatory="y">
+		<read field="text" mandatory="y" desc="Time spent by a read cycle">
+            <unit field="cbox" parameter="y" mandatory="y" desc="parameter unit" values="time" />
+        </read>
+        <write field="file" mandatory="y" desc="Time spent by a write cycle">
+            <unit field="cbox" parameter="y" mandatory="y" desc="parameter unit" values="time" />
+        </write>
+	</performance>
+
+</device>

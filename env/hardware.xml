@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<hardware>
+	<buses>
+		<bus name="b0" bandwidth="50G" type="ifb" /> <!-- HDR 1x 2017 -->
+		<bus name="b1" bandwidth="50G" type="ifb" />
+		<bus name="b3" bandwidth="50G" type="ifb" />
+		<bus name="b2" bandwidth="50G" type="ifb" />
+		<bus name="b4" bandwidth="50G" type="ifb" />
+	</buses>
+
+	<system bus="b0">
+		<tier bus="b1">
+			<volume bus="b2">
+				<config type="jbod" nbdev="8" />
+				<device path="env/ssd-transcend-370s.xml" />
+			</volume>
+			<volume bus="b3">
+				<config type="raid01" nbdev="10" susize="4096" />
+				<device path="env/hdd-seagate-st500.xml" />
+			</volume>
+			<volume bus="b4">
+				<config type="raidnp" nbdev="6" susize="4096" nbpar="1" decl="parity" />
+				<device path="env/hdd-seagate-st500.xml" />
+			</volume>
+		</tier>
+	</system>
+</hardware>

@@ -1,0 +1,447 @@
+.\" Manpage for OGSSim
+.\" Contact sebastien.gougeaud@uvsq.fr to correct errors or typos.
+.TH OGSSim 7 "1 October 2018" "2.0" OGSSim man page"
+.SH NAME
+.B OGSSim
+\- simulate a storage system
+.SH SYNOPSIS
+.B OGSSim
+config
+.SH DESCRIPTION
+Simulate a multi-tiered data storage system by launching a set of requests. Both the system and the request set are described in input files. The program generates results in output files.
+.SH OPTIONS
+.TP
+.B config: configuration file
+Use the indicated configuration file for OGSSim. This file is in
+.B XML
+format and contains paths of input and output files, communication and computation models information.
+.PP
+.RS
+The file is composed of five sections:
+.PP
+.TP
+.B <input>
+This section concerns the paths of the input files. The requested tags are
+.B <workload>
+and
+.B <hardware>.
+An input file can get a
+.B duname
+option to define with which data units (in time and memory) the file is written.
+.TP
+.B <output>
+This section concerns the paths of the output files. The tag
+.B <logging>
+is requested, to initialize the logging file. The other ones are optional:
+.B <result>, <resume>
+and
+.B <graph>.
+Many output graphs can be requested by the user.
+.PP
+.RS
+In addition to the filename, a graph also needs at least 2 arguments:
+.PP
+.B - type:
+graph type (deviceprofile, responsetime, ...); the types are given in the header file structure/types.hpp
+.PP
+.B - format:
+output file format between png, pdf or tex (latex with tikz)
+.PP
+.B - target:
+optional -- targeted devices
+.RE
+.TP
+.B <event>
+This section concerns the events occuring during the simulation. Each event is provided using the
+.B <entry>
+tag. It contains three options:
+.RS
+.PP
+.B - type:
+failure or replace
+.PP
+.B - target:
+targeted device
+.PP
+.B - date:
+theoretical date of the event
+.RE
+.TP
+.B <global>
+This section concerns the whole simulator, and contains information about the
+.B <communication>
+and
+.B <computation>
+models. The
+.B <global>
+tag can own a
+.B duname
+option to define which data unit is used during the whole simulation.
+.RS
+.PP
+The
+.B <communication>
+tag contains a
+.B type
+option to define which model to use: zmq or mpi. If zmq is chosen, the tags
+.B <protocol>, <address>
+and
+.B <port>
+need to be filled.
+.PP
+The
+.B <computation>
+models need to be given for
+.B <hdd>, <ssd>, <nvram>, <interface>
+and
+.B <synchronization>.
+The available models are given in the header file structure/types.hpp.
+.RE
+.TP
+.B <dataunits>
+This section concerns the data units used in the input files. Each
+.B <dataunit>
+is given with a
+.B name
+option and two tags to define the data unit values:
+.B <time>
+and
+.B <memory>.
+.TP
+.B <ogmdsim>
+This section concerns the utilization of the add-on OGMDSim to simulate a whole object storage system by translating metadata requests in data requests. The utilization of the add-on is confirmed by setting the
+.B on
+attribute to TRUE. This tag needs two other tags:
+.B <path>
+and
+.B <config>
+which are respectively the path where OGMDSim can be found, which is ./ogmdsim in this repository, and the relative path to its configuration file.
+.RE
+.PP
+
+
+We will now describe the other input files of OGSSim.
+
+
+.TP
+.B workload file
+The trace/workload file is in
+.B RAW
+format and contains 4 fields:
+.RS
+.PP
+.B - timestamp:
+arrival date of the request
+.PP
+.B - type:
+request type (0 for read and 1 for write)
+.PP
+.B - logical address:
+logical start address of the data targeted by the request in the simulated system, in data units
+.PP
+.B - size:
+request size in data units
+.RE
+
+
+.TP
+.B hardware configuration file
+This file is in
+.B XML
+format and is composed of 2 main sections in the 
+.B <hardware>
+tag:
+.PP
+.RS
+The
+.B <buses>
+tag describes the set of buses used in the system. The tag gets the parameter
+.B nbbuses
+which indicates the number of buses contained in the system. Each bus is then describes with the
+.B <bus>
+tag which contains the following parameters:
+.RS
+.TP
+.B name:
+bus name, used to link the system components with the used bus
+.PP
+.B bandwith:
+bus bandwidth in GB.s-1
+.PP
+.B type:
+bus type (ethernet, SCSI, USB, etc.)
+.RE
+.PP
+The
+.B <system>
+tag describes the components of the system, in a hierarchical way (tiers, volumes & devices). The
+.B <system>
+tag gets one parameter,
+.B bus
+which gives the name of the host-tier bus.
+.PP
+The
+.B <tier>
+tag also gets the
+.B bus
+parameter to inform the tier-volume bus. It contains a list of
+.B <volume>
+tags.
+.PP
+The
+.B <volume>
+tag also gets the
+.B bus
+parameter for the name of the volume-device bus. It contains two other mandatory tags:
+.RS
+.TP
+.B <config>
+.RS
+This tag contains a number of parameters depending on the type of configuration used. Here the description of those parameters:
+.TP
+.B type:
+configuration type (jbod, raid1, raid01, raidnp or decraid) for 'Just a Bunch Of Disks', RAID 1 (mirroring), RAID 01 (mirroring + stripping), RAID NP (parity) or declustered RAID.
+.PP
+.B nbdev:
+number of devices
+.PP
+.B susize:
+stripe unit size, in data units [raid01, raidnp and decraid only]
+.PP
+.B nbpar:
+number of parity devices [raidnp only]
+.PP
+.B decl:
+declustering type (no, parity, data) [raidnp only]
+.PP
+.B nbsubvol:
+number of subvolumes [decraid only]
+.PP
+.B scheme:
+scheme used for the declustered RAID [decraid only]
+.PP
+.B nbspare:
+number of spare devices [decraid only]
+.PP
+.RE
+.TP
+.B <device>
+This tag contains the path to the device used for the volume.
+.RE
+.PP
+In case the volume is a declustered RAID, some
+.B <subvol>
+tags must be defined. This tag gets the same parameters as the the
+.B <config>
+one.
+.RE
+
+.TP
+.B device parameter file
+The device file format depends on the described device type. The current version of OGSSim supports three different kinds of device: HDD, SSD and NVRAM. The device type is given by the
+.B type
+parameter of the
+.B <device>
+tag. Each device is composed of 4 sections:
+.B <information>, <geometry>, <performance>
+and
+.B <reliability>.
+.PP
+.B unit
+parameters in
+.B <performance>
+components indicates the measure
+.B unit
+between iops, time or bandwidth. If iops is selected, you also need to give the
+.B size
+of an IO operation.
+
+
+.TP
+.B HDD
+.RS
+.B <information>
+.RS
+.B <name>:
+device name [optional]
+.PP
+.B <capacity>:
+device capacity in GB
+.PP
+.B <producer>:
+device producer [optional]
+.PP
+.B <year>:
+device year of production [optional]
+.RE
+.PP
+.B <geometry>
+.RS
+.B <sectorsize>:
+sector size
+.PP
+.B <sectorspertrack>:
+number of sectors by track
+.PP
+.B <tracksperplatter>:
+number of tracks by platter
+.PP
+.B <nbplatters>:
+number of platters
+.PP
+.B <dataheads>:
+number of data heads
+.RE
+.PP
+.B <performance>
+.RS
+.B <minrseek>:
+minimum read seek time
+.PP
+.B <avgrseek>:
+average read seek time
+.PP
+.B <maxrseek>:
+maximum read seek time
+.PP
+.B <minwseek>:
+minimum write seek time
+.PP
+.B <avgwseek>:
+average write seek time
+.PP
+.B <maxwseek>:
+maximum write seek time
+.PP
+.B <mediatransferrate>:
+media transfer rate
+.PP
+.B <rotspeed>:
+rotational speed in rpm
+.PP
+.B <buffersize>:
+buffer size
+.RE
+.PP
+.B <reliability>
+.RS
+.B <mttf>
+mean time until failure in hours [optional]
+.RE
+.RE
+
+
+.TP
+.B SSD
+.RS
+.B <information>
+.RS
+.B <name>:
+device name [optional]
+.PP
+.B <capacity>:
+device capacity in GB
+.PP
+.B <arch>:
+device architecture (SLC, MLC, TLC) [optional]
+.PP
+.B <producer>:
+device producer [optional]
+.PP
+.B <year>:
+device year of production [optional]
+.RE
+.PP
+.B <geometry>
+.RS
+.B <pagesize>:
+page size
+.PP
+.B <pagesperblock>:
+number of pages by block
+.PP
+.B <blocksperdie>:
+number of blocks by die
+.PP
+.B <nbdies>:
+number of dies
+.RE
+.PP
+.B <performance>
+.RS
+.B <randread>:
+random read access
+.PP
+.B <randwrite>:
+random write access
+.PP
+.B <seqread>:
+sequential read access
+.PP
+.B <seqwrite>:
+sequential write access
+.PP
+.B <erase>:
+erase time
+.PP
+.B <buffersize>:
+buffer size
+.RE
+.PP
+.B <reliability>
+.RS
+.B <nberase>
+number of erase of one block
+.PP
+.B <mtbf>
+mean time before failure in hours [optional]
+.RE
+.RE
+
+
+.B NVRAM
+.RS
+.B <information>
+.RS
+.B <name>:
+device name [optional]
+.PP
+.B <capacity>:
+device capacity in GB
+.PP
+.B <producer>:
+device producer [optional]
+.PP
+.B <year>:
+device year of production [optional]
+.RE
+.PP
+.B <geometry>
+.RS
+.B <nbchips>:
+number of chips
+.PP
+.B <bytespercol>:
+number of bytes per column
+.PP
+.B <columns>:
+number of columns
+.PP
+.B <rows>:
+number of rows
+.RE
+.PP
+.B <performance>
+.RS
+.B <read>:
+read access
+.PP
+.B <write>:
+write access
+.RE
+.RE
+
+.SH AUTHORS
+Sebastien Gougeaud (sebastien.gougeaud@uvsq.fr)
+.br
+Soraya Zertal (soraya.zertal@uvsq.fr)

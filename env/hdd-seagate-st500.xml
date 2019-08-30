@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Parameter file for ... ... ... ...
+Blank parameter file
+-->
+<device type="hdd">
+	<information>
+		<name>ST500DM002</name>
+		<capacity>500</capacity> <!-- in GBytes -->
+		<producer>Seagate</producer>
+		<year>2011</year>
+	</information>
+	<geometry>
+		<sectorsize>512</sectorsize> <!-- 512/4096 -->
+		<sectorspertrack>63</sectorspertrack>
+		<tracksperplatter>60801</tracksperplatter>
+		<nbplatters>255</nbplatters>
+		<dataheads>255</dataheads>
+	</geometry>
+
+	<performance>
+		<minrseek unit="time">1.0m</minrseek>
+		<avgrseek unit="time">8.5m</avgrseek>
+		<maxrseek unit="time">15.2m</maxrseek>
+		<minwseek unit="time">1.2m</minwseek>
+		<avgwseek unit="time">9.5m</avgwseek>
+		<maxwseek unit="time">15.2m</maxwseek>
+		<mediatransferrate unit="bandwidth">212M</mediatransferrate> <!-- in MB.s-1 -->
+		<rotspeed>7200</rotspeed> <!-- in rpm -->
+		<buffersize>32M</buffersize> <!-- in MB -->
+	</performance>
+	<reliability>
+		<mttf></mttf> <!-- in hours -->
+	</reliability>
+	<controller>
+	</controller>
+</device>

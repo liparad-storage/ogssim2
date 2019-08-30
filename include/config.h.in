@@ -1,0 +1,6 @@
+#cmakedefine01 USE_STATIC_LIBRARIES
+#cmakedefine01 USE_STATIC_GLOG
+#cmakedefine01 USE_TINYXML
+#cmakedefine01 USE_TINYXML_STATIC
+#cmakedefine01 USE_MPI_BOOST
+#cmakedefine01 USE_PYTHON_BINDING

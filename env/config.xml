@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<configuration>
+	<input>
+		<workload duname="trace">env/trace.raw</workload>
+		<hardware>env/hardware.xml</hardware>
+	</input>
+	<output>
+		<logging>log/dmlb_</logging>
+		<resume>env/resume-dmlb.data</resume>
+	</output>
+	<event>
+	</event>
+	<global duname="genral">
+		<ogmdsim on="true">
+            <path>./ogmdsim</path>
+            <config>env/config.xml</config>
+        </ogmdsim>
+		<communication type="zmq">
+			<protocol>tcp</protocol>
+			<address>127.0.0.1</address>
+			<port>5555</port>
+		</communication>
+		<computation>
+			<hdd>default</hdd>
+			<ssd>default</ssd>
+			<nvram>default</nvram>
+			<interface>default</interface>
+			<synchronization>defv4otf</synchronization>
+		</computation>
+		<dataunits>
+			<dataunit name="trace">
+				<memory>64K</memory>
+				<time>45u</time>
+			</dataunit>
+			<dataunit name="genral">
+				<memory>4K</memory>
+				<time>1u</time>
+			</dataunit>
+		</dataunits>
+	</global>
+</configuration>

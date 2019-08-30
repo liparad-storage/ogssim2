@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<device type="hdd">
+	<information>
+		<name>A7K1000</name>
+		<capacity>500</capacity> <!-- in GBytes -->
+		<producer>Hitachi</producer>
+		<year>2007</year>
+	</information>
+	<geometry>
+		<sectorsize>512</sectorsize> <!-- 512/4096 -->
+		<sectorspertrack>1380</sectorspertrack>
+		<tracksperplatter>117967</tracksperplatter>
+		<nbplatters>6</nbplatters>
+		<dataheads>6</dataheads>
+	</geometry>
+	<performance>
+		<minrseek unit="time">1.1m</minrseek>
+		<avgrseek unit="time">8.7m</avgrseek>
+		<maxrseek unit="time">15.2m</maxrseek>
+		<minwseek unit="time">1.1m</minwseek>
+		<avgwseek unit="time">8.7m</avgwseek>
+		<maxwseek unit="time">15.2m</maxwseek>
+		<mediatransferrate unit="bandwidth">120M</mediatransferrate>
+		<rotspeed>7200</rotspeed>
+		<buffersize>32M</buffersize>
+	</performance>
+	<reliability>
+		<mttf></mttf> <!-- in hours -->
+	</reliability>
+</device>

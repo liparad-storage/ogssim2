@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<device field="diry" mandatory="y">
+    <type field="cbox" parameter="y" mandatory="y" desc="device type" values="hdd" />
+        <information field="diry">
+                <name field="text"/>
+                <capacity field="text"/>
+                <producer field="text"/>
+                <year field="text"/>
+        </information>
+        <geometry field="diry" mandatory="y">
+            <sectorsize field="text" mandatory="y" desc="Sector size" />
+            <sectorspertrack field="text" mandatory="y" desc="Number of sectors per track" />
+            <tracksperplatter field="text" mandatory="y" desc="Number of tracks per platter" />
+            <nbplatters field="text" mandatory="y" desc="Number of platters" />
+            <dataheads field="text" mandatory="y" desc="Number of data heads" />
+        </geometry>
+        <performance field="diry" mandatory="y">
+            <minrseek field="text" mandatory="y" desc="Minimum random seek time">
+                <unit field="cbox" mandatory="y" parameter="y" values="time" />
+            </minrseek>
+            <avgrseek field="text" mandatory="y" desc="Minimum random seek time">
+                <unit field="cbox" mandatory="y" parameter="y" values="time" />
+            </avgrseek>
+            <maxrseek field="text" mandatory="y" desc="Minimum random seek time">
+                <unit field="cbox" mandatory="y" parameter="y" values="time" />
+            </maxrseek>
+            <minwseek field="text" mandatory="y" desc="Minimum random seek time">
+                <unit field="cbox" mandatory="y" parameter="y" values="time" />
+            </minwseek>
+            <avgwseek field="text" mandatory="y" desc="Minimum random seek time">
+                <unit field="cbox" mandatory="y" parameter="y" values="time" />
+            </avgwseek>
+            <maxwseek field="text" mandatory="y" desc="Minimum random seek time">
+                <unit field="cbox" mandatory="y" parameter="y" values="time" />
+            </maxwseek>
+            <mediatransferrate field="text" mandatory="y" desc="Media transfer rate" format="123[KMG]">
+                <unit field="cbox" mandatory="y" parameter="y" values="bandwidth" />
+            </mediatransferrate>
+            <rotspeed field="text" mandatory="y" desc="Rotation speed" />
+            <buffersize field="text" mandatory="y" desc="Buffer size" format="123[KMG]" />
+        </performance>
+        <reliability field="diry" mandatory="y">
+            <mttf field="text" />
+        </reliability>
+        <controller field="diry" mandatory="y" />
+</device>

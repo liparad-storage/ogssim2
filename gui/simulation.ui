@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Simulation</class>
+ <widget class="QWidget" name="Simulation">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>947</width>
+    <height>486</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <item>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>Configuration file selection</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="2" column="2">
+       <widget class="QPushButton" name="butSaveAs">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Save as ...</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QPushButton" name="butLoad">
+        <property name="text">
+         <string>Load</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QPushButton" name="butRefresh">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Refresh</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="3">
+       <widget class="QPushButton" name="butSave">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Save</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="0" column="0" colspan="3">
+       <widget class="QLineEdit" name="filePath"/>
+      </item>
+      <item row="1" column="0" colspan="4">
+       <widget class="QTextEdit" name="fileBrowser"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="title">
+      <string/>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="butLaunch">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Launch</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>fileBrowser</sender>
+   <signal>textChanged()</signal>
+   <receiver>Simulation</receiver>
+   <slot>enableSaveButton()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>422</x>
+     <y>249</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>473</x>
+     <y>242</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>butSaveAs</sender>
+   <signal>clicked()</signal>
+   <receiver>Simulation</receiver>
+   <slot>actionSaveAs()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>708</x>
+     <y>455</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>473</x>
+     <y>242</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>butSave</sender>
+   <signal>clicked()</signal>
+   <receiver>Simulation</receiver>
+   <slot>actionSave()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>789</x>
+     <y>455</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>473</x>
+     <y>242</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>butRefresh</sender>
+   <signal>clicked()</signal>
+   <receiver>Simulation</receiver>
+   <slot>actionRefresh()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>627</x>
+     <y>455</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>473</x>
+     <y>242</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>butLoad</sender>
+   <signal>clicked()</signal>
+   <receiver>Simulation</receiver>
+   <slot>actionBrowse()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>789</x>
+     <y>43</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>473</x>
+     <y>242</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Simulation</sender>
+   <signal>updateFile(QString)</signal>
+   <receiver>fileBrowser</receiver>
+   <slot>setText(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>473</x>
+     <y>242</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>422</x>
+     <y>249</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Simulation</sender>
+   <signal>updatePath(QString)</signal>
+   <receiver>filePath</receiver>
+   <slot>setText(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>473</x>
+     <y>242</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>382</x>
+     <y>42</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>butLaunch</sender>
+   <signal>clicked()</signal>
+   <receiver>Simulation</receiver>
+   <slot>actionLaunch()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>890</x>
+     <y>455</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>473</x>
+     <y>242</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <signal>updatePath(QString)</signal>
+  <signal>updateFile(QString)</signal>
+  <slot>enableSaveButton()</slot>
+  <slot>actionSaveAs()</slot>
+  <slot>actionSave()</slot>
+  <slot>actionRefresh()</slot>
+  <slot>actionBrowse()</slot>
+  <slot>actionLaunch()</slot>
+ </slots>
+</ui>

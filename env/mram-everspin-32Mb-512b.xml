@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<device type="nvram">
+	<information>
+		<name>EMD3D256M08BS1</name>
+		<capacity>32</capacity> <!-- in MBytes -->
+		<producer>Everspin</producer>
+		<year>2018</year>
+	</information>
+	<geometry>
+		<nbchips>1</nbchips>
+		<bytespercol>4096</bytespercol>
+		<columns>1</columns>
+		<rows>524288</rows>
+		<!-- <rows>33554432</rows> -->
+	</geometry>
+	<performance>
+		<!-- <read unit="time">170ns</read>
+        <write unit="time">212ns</write> -->
+		<read unit="time">6us</read>
+        <write unit="time">6us</write>
+	</performance>
+</device>

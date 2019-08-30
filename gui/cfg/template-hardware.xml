@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<hardware field="diry" mandatory="y">
+    <buses field="diry" mandatory="y">
+        <bus field="diry" multiple="y">
+            <name field="text" parameter="y" mandatory="y" desc="Bus unique identifier" />
+            <bandwidth field="ftxt" parameter="y" mandatory="y" format="123[KMG]" />
+            <type field="cbox" paramter="y" mandatory="y" values="ifb;eth;scsi;pcie" />
+        </bus>
+    </buses>
+    <system field="diry" mandatory="y">
+        <bus field="text" parameter="y" mandatory="y" desc="Bus between the host and its tiers" />
+        <tier field="diry" mandatory="y" multiple="y">
+            <bus field="text" parameter="y" mandatory="y" desc="Bus between the tier and its volumes" />
+            <volume field="diry" mandatory="y" multiple="y">
+                <bus field="text" parameter="y" mandatory="y" desc="Bus between the volume and its devices" />
+                <config field="diry" mandatory="y" desc="Volume data layout">
+                    <type field="cbox" parameter="y" mandatory="y" values="jbod;raid1;raid01;raidnp" desc="Data layout" />
+                    <nbdev field="text" parameter="y" mandatory="y" desc="Number of devices" />
+                    <susize field="text" parameter="y" desc="Stripe unit size" />
+                    <nbpar field="text" parameter="y" desc="Number of parity devices" />
+                    <decl field="cbox" parameter="y" values="off;parity;data" desc="Declustering type" />
+                </config>
+                <device field="diry" mandatory="y">
+                    <path field="file" parameter="y" mandatory="y" desc="Path to the device configuration file" />
+                </device>
+            </volume>
+        </tier>
+    </system>
+</hardware>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>905</width>
+    <height>573</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>OGSSim</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>2</number>
+      </property>
+      <widget class="Simulation" name="tabSim">
+       <attribute name="title">
+        <string>Simulation</string>
+       </attribute>
+      </widget>
+      <widget class="Visualization" name="tabViz">
+       <attribute name="title">
+        <string>Visualisation</string>
+       </attribute>
+      </widget>
+      <widget class="Edition" name="tabEdt">
+       <attribute name="title">
+        <string>Edition</string>
+       </attribute>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>Visualization</class>
+   <extends>QWidget</extends>
+   <header>visualization.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Simulation</class>
+   <extends>QWidget</extends>
+   <header>simulation.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Edition</class>
+   <extends>QWidget</extends>
+   <header>edition.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

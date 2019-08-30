@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<configuration field="diry" mandatory="y">
+    <input field="diry" mandatory="y">
+        <workload field="file" mandatory="y" desc="Path to the workload file (in RAW format)" />
+        <hardware field="file" mandatory="y" desc="Path to the hardware file (in XML format)" />
+    </input>
+    <output field="diry" mandatory="y">
+        <logging field="file" mandatory="y" desc="Path to the logging file (in RAW format)" />
+        <result field="file" mandatory="y" desc="Path to the result file (in RAW format)" />
+        <resume field="file" desc="Path to the resume file (in RAW format)" />
+        <graph field="file" multiple="y" desc="Path to the graph file">
+            <type field="cbox" parameter="y" mandatory="y" desc="Plot type" values="deviceprofile;responsetime;requestcompletion;waitingtime" />
+            <format field="cbox" parameter="y" mandatory="y" desc="Plot file format" values="tex;pdf;png" />
+            <target field="ftxt" parameter="y" mandatory="y" desc="Targeted hardware" fmt="name:i0-in" />
+            <arg1 field="text" parameter="y" desc="Plot argument" />
+                </graph>
+	</output>
+        <event field="diry" mandatory="y">
+            <entry field="diry" multiple="y">
+                <type field="cbox" parameter="y" mandatory="y" desc="Event type" values="failure;replacement" />
+                <target field="text" parameter="y" mandatory="y" desc="Targeted device" />
+                <date field="text" parameter="y" mandatory="y" desc="Event date" />
+            </entry>
+        </event>
+        <global field="diry" mandatory="y">
+                <communication field="diry" mandatory="y">
+                        <type field="cbox" parameter="y" mandatory="y" desc="Communication library" values="zmq;mpi" />
+                        <protocol field="cbox" mandatory="y" desc="Communication protocol" values="tcp;ipc" />
+                        <address field="text" mandatory="y" desc="Communication manager address" />
+                        <port field="text" mandatory="y" desc="Communication manager port" />
+		</communication>
+                <computation field="diry" mandatory="y">
+                    <hdd field="cbox" mandatory="y" desc="HDD computation model" values="default" />
+                    <ssd field="cbox" mandatory="y" desc="SSD computation model" values="default" />
+                    <nvram field="cbox" mandatory="y" desc="NVRAM computation model" values="default" />
+                    <interface field="cbox" mandatory="y" desc="Interface computation model" values="default" />
+                    <synchronization field="cbox" mandatory="y" desc="Waiting time computation model" values="default;defv2;singledisk" />
+                </computation>
+                <dataunit field="diry" mandatory="y">
+                    <workload field="text" mandatory="y" desc="Data unit used for the workload file" format="123[KMG]" />
+                </dataunit>
+	</global>
+</configuration>

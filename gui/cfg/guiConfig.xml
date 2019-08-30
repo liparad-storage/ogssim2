@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<configuration>
+    <template>
+        <entry>cfg/template-config.xml</entry>
+        <entry>cfg/template-hardware.xml</entry>
+        <entry>cfg/template-hdd.xml</entry>
+        <entry>cfg/template-ssd.xml</entry>
+        <entry>cfg/template-nvram.xml</entry>
+    </template>
+</configuration>

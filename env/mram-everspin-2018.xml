@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<device type="nvram">
+	<information>
+		<name>MR2A16A</name>
+		<capacity>2</capacity> <!-- in MBytes -->
+		<producer>Everspin</producer>
+		<year>2018</year>
+	</information>
+	<geometry>
+		<nbchips>4</nbchips>
+		<bytespercol>2</bytespercol> <!-- x8 = 1 / x16 = 2 / ... -->
+		<columns>512</columns> <!-- sqrt(total_words) -->
+		<rows>512</rows> <!-- sqrt(total_words) -->
+	</geometry>
+	<performance>
+		<read unit="time">35n</read>
+        <write unit="time">25n</write>
+	</performance>
+</device>
