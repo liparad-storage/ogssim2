@@ -17,7 +17,6 @@ Directories:
 - env: examples of input files
 - include: OGSSim headers
 - gui: OGSS-GUI files, need to be used within Qt Creator
-- ogmdsim: OGMDSim sub-repository
 - src: OGSSim sources
 
 Files:
